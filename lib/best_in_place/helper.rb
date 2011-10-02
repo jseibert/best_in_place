@@ -3,8 +3,9 @@ module BestInPlace
     def best_in_place(object, field, opts = {})
       opts[:type] ||= :input
       opts[:collection] ||= []
+			opts[:prompt] ||= ""
       field = field.to_s
-      value = object.send(field).blank? ? "" : object.send(field)
+      value = object.send(field).blank? ? opts[:prompt] : object.send(field)
       collection = nil
       if opts[:type] == :select && !opts[:collection].blank?
         v = object.send(field)
